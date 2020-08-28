@@ -1,9 +1,0 @@
-{	
-	"php_ext":"",				
-	"success_url":"/index.php",				
-	"php_versions":"56,70,71,72,73,74",	
-	"db_config":"",	
-	"admin_username":"",
-	"admin_password":"",
-	"run_path":"/",
-}
