@@ -1,0 +1,5 @@
+#修改config.php中的rewrite为true即可打开伪静态支持！
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteRule ^(.*)$ index.php?f=$1 [L]
+</IfModule>
