@@ -31,5 +31,3 @@ function size_unit($num){
     $num /= pow(1024, $p);
     return number_format($num, 3).' '.$format;
 }
-
-?>

@@ -19,5 +19,4 @@ if(file_exists($local_file)&&is_file($local_file)){
     fclose($file);// 关闭文件流
 }else{ 
     exit('404 File not found');
-} 
-?>
+}
