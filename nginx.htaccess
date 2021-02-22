@@ -1,2 +1,4 @@
-#修改config.php中的rewrite为true即可打开伪静态支持！
-rewrite ^(.*)$ /index.php?f=$1 last;
+location /
+{
+	 try_files $uri $uri/ /index.php?f=$uri&args=$args;
+}
