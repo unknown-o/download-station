@@ -1,5 +1,6 @@
 <?php
 include('config.php');
+error_reporting(0);
 $f = str_replace("//", "/", $_GET['f']);
 
 if (!is_dir($path . $f)) {
