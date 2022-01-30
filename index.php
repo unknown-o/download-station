@@ -1,8 +1,11 @@
 <?php
 include('config.php');
-error_reporting(0);
+include('function.php');
 $f = str_replace("//", "/", $_GET['f']);
 
+if (empty($siteURL)) {
+    $siteURL = getHttpType() . $_SERVER['HTTP_HOST'];
+}
 if (!is_dir($path . $f)) {
     if (file_exists($path . $f)) {
         include('download.php');
@@ -37,8 +40,8 @@ include('header.php');
                 <?php
                 if (dirname($f) == '/') $p = '';
                 else $p = dirname($f);
-                if ($rewrite) echo '<td><a href="' . get_info('site_url') . $p . '">上级目录</a></td>';
-                else echo '<td><a href="' . get_info('site_url') . '?f=' . $p . '">上级目录</a></td>';
+                if ($rewrite) echo '<td><a href="' . $siteURL . $p . '">上级目录</a></td>';
+                else echo '<td><a href="' . $siteURL . '?f=' . $p . '">上级目录</a></td>';
                 echo '<td>Dir</td><td>' . date("Y-m-d H:i:s", filemtime($path . $f)) . '</td>';
                 if (is_dir($path . $f)) {
                     $dir = scandir($path . $f);
@@ -53,10 +56,10 @@ include('header.php');
                                 $size = 'Dir';
                             } else {
                                 $download_p = 'download="' . $value . '"';
-                                $size = size_unit(filesize($sub_path));
+                                $size = sizeConvert(filesize($sub_path));
                             }
-                            if ($rewrite) echo '<td><a href="' . get_info('site_url') . str_replace("//", "/", $f . '/' . $value) . '" ' . $download_p . '>' . $value . '</a></td>';
-                            else echo '<td><a href="' . get_info('site_url') . '?f=' . str_replace("//", "/", $f . '/' . $value) . '" ' . $download_p . '>' . $value . '</a></td>';
+                            if ($rewrite) echo '<td><a href="' . $siteURL . str_replace("//", "/", $f . '/' . $value) . '" ' . $download_p . '>' . $value . '</a></td>';
+                            else echo '<td><a href="' . $siteURL . '?f=' . str_replace("//", "/", $f . '/' . $value) . '" ' . $download_p . '>' . $value . '</a></td>';
                             echo '<td>' . $size . '</td>';
                             echo '<td>' . date("Y-m-d H:i:s", filemtime($sub_path)) . '</td>';
                             echo '</tr>';
