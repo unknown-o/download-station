@@ -1,6 +1,7 @@
 <?php
 include('config.php');
 include('function.php');
+
 $f = str_replace("//", "/", $_GET['f']);
 
 if (empty($siteURL)) {
@@ -38,30 +39,51 @@ include('header.php');
             </thead>
             <tbody>
                 <?php
-                if (dirname($f) == '/') $p = '';
-                else $p = dirname($f);
-                if ($rewrite) echo '<td><a href="' . $siteURL . $p . '">上级目录</a></td>';
-                else echo '<td><a href="' . $siteURL . '?f=' . $p . '">上级目录</a></td>';
+                if (dirname($f) == '/') {
+                    $p = '';
+                } else {
+                    $p = dirname($f);
+                }
+                if ($rewrite) {
+                    echo '<td><a href="' . $siteURL . $p . '">上级目录</a></td>';
+                } else {
+                    echo '<td><a href="' . $siteURL . '?f=' . $p . '">上级目录</a></td>';
+                }
                 echo '<td>Dir</td><td>' . date("Y-m-d H:i:s", filemtime($path . $f)) . '</td>';
                 if (is_dir($path . $f)) {
                     $dir = scandir($path . $f);
-                    foreach ($dir as $value) {
-                        $sub_path = $path . $f . '/' . $value;
-                        if ($value == '.' || $value == '..') {
+                    foreach ($dir as $filename) {
+                        $subPath = $path . $f . '/' . $filename;
+                        if ($filename == '.' || $filename == '..') {
                             continue;
                         } else {
                             echo '<tr>';
-                            if (is_dir($sub_path)) {
-                                $download_p = '';
-                                $size = 'Dir';
+                            if (is_dir($subPath)) {
+                                $extraFlag = '';
+                                $filesize = 'Dir';
+                                $fileURL = $siteURL . str_replace("//", "/", $f . '/' . $filename);
                             } else {
-                                $download_p = 'download="' . $value . '"';
-                                $size = sizeConvert(filesize($sub_path));
+                                switch ($downloadMode) {
+                                    case 2:
+                                        $fileURL = $siteURL . str_replace("//", "/", $path . $f . '/' . $filename);
+                                        break;
+                                    case 3:
+                                        $fileURL = $downloadURL . str_replace("//", "/", $f . '/' . $subPath);
+                                        break;
+                                    default:
+                                        $fileURL = $siteURL . str_replace("//", "/", $f . '/' . $filename);
+                                        break;
+                                }
+                                $extraFlag = 'download="' . $filename . '"';
+                                $filesize = sizeConvert(filesize($subPath));
                             }
-                            if ($rewrite) echo '<td><a href="' . $siteURL . str_replace("//", "/", $f . '/' . $value) . '" ' . $download_p . '>' . $value . '</a></td>';
-                            else echo '<td><a href="' . $siteURL . '?f=' . str_replace("//", "/", $f . '/' . $value) . '" ' . $download_p . '>' . $value . '</a></td>';
-                            echo '<td>' . $size . '</td>';
-                            echo '<td>' . date("Y-m-d H:i:s", filemtime($sub_path)) . '</td>';
+                            if ($rewrite) {
+                                echo '<td><a href="' .  $fileURL . '" ' . $extraFlag . '>' . $filename . '</a></td>';
+                            } else {
+                                echo '<td><a href="' . $fileURL . '" ' . $extraFlag . '>' . $filename . '</a></td>';
+                            }
+                            echo '<td>' . $filesize . '</td>';
+                            echo '<td>' . date("Y-m-d H:i:s", filemtime($subPath)) . '</td>';
                             echo '</tr>';
                         }
                     }
