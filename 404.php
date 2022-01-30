@@ -10,7 +10,7 @@ header("HTTP/1.1 404 Not Found");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#3f51b5">
     <meta name="mdui-main-color" content="#3f51b5">
-    <Title>页面走丢啦 - <?php echo get_info('site_name'); ?></Title>
+    <Title>页面走丢啦 - <?php echo $siteName; ?></Title>
     <link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css">
     <script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
     <style>
@@ -66,7 +66,7 @@ header("HTTP/1.1 404 Not Found");
 
 <body class="mdui-theme-primary-indigo mdui-theme-accent-pink">
     <div class="mdui-color-theme mdui-typo-display-4 mdui-valign mdui-background-404">
-        <span>404<span class="mdui-typo-headline">这个页面走丢了哦！</span></span>
+        <span>404<span class="mdui-typo-headline">这个页面走丢了哦</span></span>
     </div>
     <div class="mdui-valign mdui-main-404">
         <div>
