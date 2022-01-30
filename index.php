@@ -69,10 +69,10 @@ include('header.php');
                             } else {
                                 switch ($downloadMode) {
                                     case 2:
-                                        $fileURL = $siteURL . str_replace("//", "/", $path . $f . '/' . $filename);
+                                        $fileURL = $siteURL . str_replace("//", "/", $subPath);
                                         break;
                                     case 3:
-                                        $fileURL = $downloadURL . str_replace("//", "/", $f . '/' . $subPath);
+                                        $fileURL = $downloadURL . str_replace("//", "/", $f . '/' . $filename);
                                         break;
                                 }
                                 $extraFlag = 'download="' . $filename . '"';
