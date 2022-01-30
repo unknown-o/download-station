@@ -42,7 +42,7 @@ include('header.php');
                 if (dirname($f) == '/') {
                     $p = '';
                 } else {
-                    $p = dirname($f);
+                    $p = str_replace("\\", "/", dirname($f));
                 }
                 if ($rewrite) {
                     echo '<td><a href="' . $siteURL . $p . '">上级目录</a></td>';
@@ -58,10 +58,14 @@ include('header.php');
                             continue;
                         } else {
                             echo '<tr>';
+                            if ($rewrite) {
+                                $fileURL = $siteURL . str_replace("//", "/", $f . '/' . $filename);
+                            } else {
+                                $fileURL = $siteURL . str_replace("//", "/", "?f=" . $f . '/' . $filename);
+                            }
                             if (is_dir($subPath)) {
                                 $extraFlag = '';
                                 $filesize = 'Dir';
-                                $fileURL = $siteURL . str_replace("//", "/", $f . '/' . $filename);
                             } else {
                                 switch ($downloadMode) {
                                     case 2:
@@ -70,18 +74,11 @@ include('header.php');
                                     case 3:
                                         $fileURL = $downloadURL . str_replace("//", "/", $f . '/' . $subPath);
                                         break;
-                                    default:
-                                        $fileURL = $siteURL . str_replace("//", "/", $f . '/' . $filename);
-                                        break;
                                 }
                                 $extraFlag = 'download="' . $filename . '"';
                                 $filesize = sizeConvert(filesize($subPath));
                             }
-                            if ($rewrite) {
-                                echo '<td><a href="' .  $fileURL . '" ' . $extraFlag . '>' . $filename . '</a></td>';
-                            } else {
-                                echo '<td><a href="' . $fileURL . '" ' . $extraFlag . '>' . $filename . '</a></td>';
-                            }
+                            echo '<td><a href="' .  $fileURL . '" ' . $extraFlag . '>' . $filename . '</a></td>';
                             echo '<td>' . $filesize . '</td>';
                             echo '<td>' . date("Y-m-d H:i:s", filemtime($subPath)) . '</td>';
                             echo '</tr>';
