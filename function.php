@@ -1,11 +1,11 @@
 <?php
 
-function get_http_type(){
+function getHttpType(){
     $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
     return $http_type;
 }
 
-function size_unit($num){
+function sizeConvert($num){
     $p = 0;
     $format='Byte';
     if($num>0 && $num<1024){

@@ -1,36 +1,37 @@
 <?php
-//本程序由吴先森开发
-//版本:2.2.1
-//尊重版权，请不要删除版权提示
+// 本程序由吴先森开发
+// 尊重版权，请不要删除版权提示
 
-//是否开启伪静态
+// 是否开启伪静态（开启为true，关闭为false
 $rewrite = false;
 
-//下载文件存储目录
+// 下载文件存储目录（如果下载模式为1时建议修改
 $path = './file';
 
-//不要问我这里为什么不要用switch或array数组，因为这是我之前写的代码懒得改了
+// 网址设定，为空为自动获取（eg. https://share.llilii.cn
+$siteURL = '';
 
-//站点简单设置
-function get_info($category)
-{
-    //网址设定
-    if ($category == 'site_url') {
-        $Info = '';
-        if (empty($Info)) $Info = get_http_type() . $_SERVER['HTTP_HOST'];
-    }
-    //站点名称
-    if ($category == 'site_title') $Info = '未知下载站';
-    //站点描述
-    if ($category == 'description') $Info = '未知下载站';
-    //更多颜色请参考https://www.mdui.org/docs/color
-    //主题颜色
-    if ($category == 'color') $Info = 'teal';
-    //主题强调色
-    if ($category == 'accent_color') $Info = 'pink';
-    //站点关键词，用','分割
-    if ($category == 'keyword') $Info = '未知下载站,吴先森';
-    //单个文件下载限速，单位：KB/S
-    if ($category == 'download_max_speed') $Info = 100;
-    return $Info;
-}
+// 网站名称
+$siteName = '未知下载站';
+
+// 网站介绍
+$siteDescription = "由一条咸鱼开发的简易（陋）下载站";
+
+// 站点关键词
+$siteKeywords = '未知下载站,吴先森';
+
+// 主题颜色和强调色颜色，更多颜色请参考https://www.mdui.org/docs/color
+$themeColor = 'teal';
+$accentColor = 'pink';
+
+// 下载模式
+// 此值为1时：使用php进行下载限速（$maxSpeed变量生效
+// 此值为2时：直接返回文件在本站的路径
+// 此值为3时：将文件的路径拼接到$downloadURL中（$downloadURL变量生效
+$downloadMode = 1;
+
+// 单个文件下载限速，单位：KB/S（下载模式为1时生效
+$maxSpeed = 100;
+
+// 文件服务器链接（下载模式为3时生效
+$downloadURL = "https://share.llilii.cn";
