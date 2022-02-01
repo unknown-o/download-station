@@ -22,9 +22,9 @@
 
 内网仓库：https://git.mr-wu.top/UnknownO/download-station
 
-Github仓库：https://gitee.com/mr-wu-code/download-station
+Github仓库：https://github.com/unknown-o/download-station
 
-Gitee仓库：https://github.com/unknown-o/download-station
+Gitee仓库：https://gitee.com/mr-wu-code/download-station
 
 ### 这是一个非常简洁的说明
 
