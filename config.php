@@ -20,6 +20,12 @@ $siteDescription = "由一条咸鱼开发的简易（陋）下载站";
 // 站点关键词
 $siteKeywords = '未知下载站,吴先森';
 
+// MDUI框架地址（支持外部CDN地址
+$mduiPath = "/static/mdui";
+
+// vs.min.css文件地址（支持外部CDN地址
+$vsCssPath = "/static/css/vs.min.css";
+
 // 主题颜色和强调色颜色，更多颜色请参考https://www.mdui.org/docs/color
 $themeColor = 'teal';
 $accentColor = 'pink';

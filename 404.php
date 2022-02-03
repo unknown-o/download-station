@@ -11,8 +11,8 @@ header("HTTP/1.1 404 Not Found");
     <meta name="theme-color" content="#3f51b5">
     <meta name="mdui-main-color" content="#3f51b5">
     <Title>页面走丢啦 - <?php echo $siteName; ?></Title>
-    <link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css">
-    <script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
+    <link rel="stylesheet" href="<?php echo $mduiPath?>/css/mdui.min.css" />
+    <script src="<?php echo $mduiPath?>/js/mdui.min.js"></script>
     <style>
         .mdui-background-404 {
             position: absolute;
