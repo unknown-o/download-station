@@ -9,8 +9,9 @@
             echo $siteName; ?></title>
     <meta name="description" content="<? echo $siteDescription?>">
     <meta name="keyword" content="<? echo $siteKeywords?>">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css" />
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/vs.min.css" />
+    <link rel="stylesheet" href="<?php echo $mduiPath?>/css/mdui.min.css" />
+    <link rel="stylesheet" href="<?php echo $vsCssPath?>" />
+    <script src="<?php echo $mduiPath?>/js/mdui.min.js"></script>
 </head>
 
 <body class="mdui-appbar-with-toolbar  mdui-theme-primary-<?php echo $themeColor ?> mdui-theme-accent-<?php echo $accentColor ?> mdui-theme-layout-auto">
