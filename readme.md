@@ -24,8 +24,6 @@
 
 Github仓库：https://github.com/unknown-o/download-station
 
-Gitee仓库：https://gitee.com/mr-wu-code/download-station
-
 ### 这是一个非常简洁的说明
 
 由一条咸鱼开发的一款非常简陋的文件下载站
