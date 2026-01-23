@@ -4,7 +4,7 @@ if($downloadMode!=1){
     exit();
 }
 // 将发送到客户端的本地文件 
-$localFile = $path . $f;
+$localFile = $fullPath;
 $downloadFile = pathinfo($f)['basename'];
 if (file_exists($localFile) && is_file($localFile)) {
     header('Cache-control: private'); // 发送 headers 

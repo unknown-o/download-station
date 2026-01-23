@@ -2,13 +2,20 @@
 include('config.php');
 include('function.php');
 
-$f = str_replace("//", "/", $_GET['f']);
+$basePath = realpath(__DIR__ . '/' . $path);
+$fullPath = realpath($basePath . '/' . ($_GET['f'] ?? ''));
+
+if (!str_starts_with($fullPath, $basePath)) {
+    include('404.php');
+    exit;
+}
+$f = str_replace($basePath, "", $fullPath);
 
 if (empty($siteURL)) {
     $siteURL = getHttpType() . $_SERVER['HTTP_HOST'];
 }
-if (!is_dir($path . $f)) {
-    if (file_exists($path . $f)) {
+if (!is_dir($fullPath)) {
+    if (file_exists($fullPath)) {
         include('download.php');
         exit;
     } else {
@@ -17,13 +24,16 @@ if (!is_dir($path . $f)) {
     }
 }
 
-if (empty($f)) $page_title = 'Index of /';
-else  $page_title = 'Index of ' . $f;
+if (empty($f))
+    $page_title = 'Index of /';
+else
+    $page_title = 'Index of ' . $f;
 include('header.php');
 ?>
 <div class="mdui-container doc-container">
     <div class="mdui-typo">
-        <h2 class="doc-chapter-title doc-chapter-title-first mdui-text-color-theme"><?php echo $page_title ?><a class="doc-anchor" id="font"></a></h2>
+        <h2 class="doc-chapter-title doc-chapter-title-first mdui-text-color-theme"><?php echo $page_title ?><a
+                class="doc-anchor" id="font"></a></h2>
     </div>
 </div>
 <br>
@@ -78,7 +88,7 @@ include('header.php');
                                 $extraFlag = 'download="' . $filename . '"';
                                 $filesize = sizeConvert(filesize($subPath));
                             }
-                            echo '<td><a href="' .  $fileURL . '" ' . $extraFlag . '>' . $filename . '</a></td>';
+                            echo '<td><a href="' . $fileURL . '" ' . $extraFlag . '>' . $filename . '</a></td>';
                             echo '<td>' . $filesize . '</td>';
                             echo '<td>' . date("Y-m-d H:i:s", filemtime($subPath)) . '</td>';
                             echo '</tr>';
